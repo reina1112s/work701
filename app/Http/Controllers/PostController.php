@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-//use宣言は外部にあるクラスをPostController内にインポートできる。
-//この場合、App\Models内のPostクラスをインポートしている。
 use App\Models\Post;
-//PostController.php内でPost.phpのPostクラスを使用したいため、
-//PostController内でuse宣言を行う
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(Post $post){
-        return $post->get();
+    public function index(Post $post)
+    {
+        return view('posts.index')->with(['posts' => $post->get()]);  
+       //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
 }
+?>
